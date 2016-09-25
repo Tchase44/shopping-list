@@ -1,18 +1,6 @@
-// var line 4= document.getElementByClass("shopping_item");
 
-
-$(document).ready(function() {
-	// remove function...works!
-   $('.shopping-item-delete').on('click', function(event) {
-  		$(event.target).closest('li').remove();
-  });
-   // checked off aka crossed off....It Works!!!
-  $('ul.shopping-list button').click(function(){
-  // console.log('i was clicked');
-    var span = $(this).parent().parent().find('span').eq(0).toggleClass('shopping-item__checked');
-  // console.log(span);
-  });
-   // add item to list....Works
+function registerEvents(){
+  // add item to list....Works
    $('form#js-shopping-list-form button').click(function(event){
      event.preventDefault();
      var temp = "<li>"+
@@ -28,5 +16,21 @@ $(document).ready(function() {
                   "</div>"+
                 "</li>";       
       $('ul').append(temp);
+      registerEvents();
     });
+  // remove function...works!
+   $('.shopping-item-delete').on('click', function(event) {
+      $(this).closest('li').remove();
+  });
+   // checked off aka crossed off....It Works!!!
+  $('ul.shopping-list button').click(function(){
+  // console.log('i was clicked');
+    var span = $(this).parent().parent().find('span').eq(0).toggleClass('shopping-item__checked');
+  // console.log(span);
+  });
+};
+
+$(document).ready(function() {
+  registerEvents();
+  
 });
